@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#14243a">
+    <meta name="description" content="Personal Work OS - ruang kerja pribadi untuk produktivitas dan perencanaan hidup.">
+    <link rel="manifest" href="./manifest.webmanifest">
+
+    <title>Personal Work OS</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/notes.css">
+</head>
+
+<body>
+
+    <div id="app">
+
+        <!-- SIDEBAR -->
+        <aside id="sidebar">
+
+            <div class="sidebar-header">
+                <h2>PERSONAL OS</h2>
+            </div>
+
+            <nav id="main-navigation">
+
+                <button
+                    type="button"
+                    class="nav-item active"
+                    data-page="tasks-page">
+                    My Tasks
+                </button>
+
+                <button
+                    type="button"
+                    class="nav-item"
+                    data-page="habits-page">
+                    Habit Tracker
+                </button>
+
+            </nav>
+
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main id="main-content">
+
+            <header id="app-header">
+                <h1 id="page-title">Dashboard</h1>
+            </header>
+
+            <section id="page-content">
+
+                <!-- =================================
+                     TASKS PAGE
+                ================================== -->
+
+                <section id="tasks-page">
+
+                    <div class="page-heading">
+                        <div>
+                            <h2>My Tasks</h2>
+                            <p>Kelola dan pantau seluruh pekerjaanmu.</p>
+                        </div>
+                    </div>
+
+                    <!-- TASK SUMMARY -->
+                    <section class="task-summary-grid">
+
+                        <article class="summary-card">
+                            <div class="summary-card-label">Total Tugas</div>
+                            <div class="summary-card-value" id="summary-total">0</div>
+                            <div class="summary-card-description">Seluruh tugas</div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-card-label">Belum Dimulai</div>
+                            <div class="summary-card-value" id="summary-pending">0</div>
+                            <div class="summary-card-description">Menunggu dikerjakan</div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-card-label">Sedang Dikerjakan</div>
+                            <div class="summary-card-value" id="summary-progress">0</div>
+                            <div class="summary-card-description">Dalam proses</div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-card-label">Selesai</div>
+                            <div class="summary-card-value" id="summary-completed">0</div>
+                            <div class="summary-card-description">Tugas terselesaikan</div>
+                        </article>
+
+                    </section>
+
+                    <!-- DEADLINE MONITORING -->
+                    <section class="deadline-summary-section">
+
+                        <div class="section-heading">
+                            <h3>Deadline Monitoring</h3>
+                            <p>Pantau tenggat waktu seluruh pekerjaanmu.</p>
+                        </div>
+
+                        <div class="deadline-summary-grid">
+
+                            <article class="deadline-card overdue">
+                                <div class="deadline-card-label">Terlambat</div>
+                                <div class="deadline-card-value" id="deadline-overdue">0</div>
+                                <div class="deadline-card-description">
+                                    Deadline sudah lewat
+                                </div>
+                            </article>
+
+                            <article class="deadline-card today">
+                                <div class="deadline-card-label">Jatuh Tempo Hari Ini</div>
+                                <div class="deadline-card-value" id="deadline-today">0</div>
+                                <div class="deadline-card-description">
+                                    Harus diselesaikan hari ini
+                                </div>
+                            </article>
+
+                            <article class="deadline-card upcoming">
+                                <div class="deadline-card-label">Mendatang</div>
+                                <div class="deadline-card-value" id="deadline-upcoming">0</div>
+                                <div class="deadline-card-description">
+                                    Deadline setelah hari ini
+                                </div>
+                            </article>
+
+                        </div>
+
+                    </section>
+
+                    <!-- TASK FORM -->
+                    <div class="task-form-container">
+
+                        <h3>Tambah Tugas Baru</h3>
+
+                        <form id="task-form">
+
+                            <div class="form-group">
+                                <label for="task-title">Judul Tugas</label>
+                                <input
+                                    type="text"
+                                    id="task-title"
+                                    placeholder="Masukkan judul tugas..."
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="task-description">Deskripsi</label>
+                                <textarea
+                                    id="task-description"
+                                    placeholder="Deskripsi tugas..."></textarea>
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group">
+                                    <label for="task-priority">Prioritas</label>
+                                    <select id="task-priority">
+                                        <option value="low">Rendah</option>
+                                        <option value="medium" selected>Sedang</option>
+                                        <option value="high">Tinggi</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="task-status">Status</label>
+                                    <select id="task-status">
+                                        <option value="pending">Belum Dimulai</option>
+                                        <option value="in_progress">Sedang Dikerjakan</option>
+                                        <option value="completed">Selesai</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="task-deadline">Deadline</label>
+                                <input type="date" id="task-deadline">
+                            </div>
+
+                            <button type="submit" id="save-task-btn">
+                                Simpan Tugas
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                    <!-- TASK LIST -->
+                    <div class="task-list-container">
+
+                        <h3>Daftar Tugas</h3>
+
+                        <div class="task-filter-container">
+
+                            <div class="form-group">
+                                <label for="task-search">Cari Tugas</label>
+                                <input
+                                    type="search"
+                                    id="task-search"
+                                    placeholder="Cari berdasarkan judul atau deskripsi...">
+                            </div>
+
+                            <div class="form-row">
+
+                                <div class="form-group">
+                                    <label for="filter-status">Filter Status</label>
+                                    <select id="filter-status">
+                                        <option value="all">Semua Status</option>
+                                        <option value="pending">Belum Dimulai</option>
+                                        <option value="in_progress">Sedang Dikerjakan</option>
+                                        <option value="completed">Selesai</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="filter-priority">Filter Prioritas</label>
+                                    <select id="filter-priority">
+                                        <option value="all">Semua Prioritas</option>
+                                        <option value="high">Tinggi</option>
+                                        <option value="medium">Sedang</option>
+                                        <option value="low">Rendah</option>
+                                    </select>
+                                </div>
+
+                            </div>
+
+                            <button type="button" id="reset-filters-btn">
+                                Reset Filter
+                            </button>
+
+                            <p id="task-count">Memuat tugas...</p>
+
+                        </div>
+
+                        <div id="task-list">
+                            <p>Memuat daftar tugas...</p>
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================
+                     HABIT TRACKER PAGE
+                ================================== -->
+
+                <section id="habits-page" hidden>
+
+                    <div class="page-heading">
+                        <div>
+                            <h2>Habit Tracker</h2>
+                            <p>
+                                Bangun kebiasaan baik dan pantau konsistensimu
+                                setiap hari.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- HABIT SUMMARY -->
+                    <section class="habit-summary-grid">
+
+                        <article class="summary-card">
+                            <div class="summary-card-label">
+                                Total Kebiasaan
+                            </div>
+                            <div
+                                class="summary-card-value"
+                                id="habit-summary-total">
+                                0
+                            </div>
+                            <div class="summary-card-description">
+                                Kebiasaan aktif
+                            </div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-card-label">
+                                Selesai Hari Ini
+                            </div>
+                            <div
+                                class="summary-card-value"
+                                id="habit-summary-completed">
+                                0
+                            </div>
+                            <div class="summary-card-description">
+                                Kebiasaan terselesaikan
+                            </div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-card-label">
+                                Belum Selesai
+                            </div>
+                            <div
+                                class="summary-card-value"
+                                id="habit-summary-pending">
+                                0
+                            </div>
+                            <div class="summary-card-description">
+                                Masih perlu dikerjakan
+                            </div>
+                        </article>
+
+                        <article class="summary-card">
+                            <div class="summary-card-label">
+                                Current Streak
+                            </div>
+                            <div
+                                class="summary-card-value"
+                                id="habit-summary-streak">
+                                0
+                            </div>
+                            <div class="summary-card-description">
+                                Hari konsisten
+                            </div>
+                        </article>
+
+                    </section>
+
+                    <!-- PRAYER TRACKER -->
+                    <section class="habit-section prayer-section">
+
+                        <div class="section-heading">
+                            <h3>Salat Lima Waktu</h3>
+                            <p>
+                                Checklist pelaksanaan salat harian.
+                            </p>
+                        </div>
+
+                        <div class="prayer-progress-container">
+
+                            <div class="prayer-progress-info">
+                                <span>Progres salat hari ini</span>
+                                <strong id="prayer-progress-text">
+                                    0 dari 5
+                                </strong>
+                            </div>
+
+                            <div class="prayer-progress-track">
+                                <div
+                                    id="prayer-progress-bar"
+                                    class="prayer-progress-bar">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div id="prayer-checklist">
+
+                            <p class="empty-habit-message">
+                                Memuat checklist salat...
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                    <!-- HABIT FORM -->
+                    <section class="habit-section habit-form-container">
+
+                        <div class="section-heading">
+                            <h3>Tambah Kebiasaan Baru</h3>
+                            <p>
+                                Tambahkan aktivitas yang ingin kamu bangun
+                                secara konsisten.
+                            </p>
+                        </div>
+
+                        <form id="habit-form">
+
+                            <div class="form-group">
+                                <label for="habit-name">
+                                    Nama Kebiasaan
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="habit-name"
+                                    placeholder="Contoh: Membaca buku"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="habit-description">
+                                    Deskripsi
+                                </label>
+
+                                <textarea
+                                    id="habit-description"
+                                    placeholder="Deskripsi kebiasaan..."></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="habit-category">
+                                    Kategori
+                                </label>
+
+                                <select id="habit-category">
+                                    <option value="Personal">Personal</option>
+                                    <option value="Health">Kesehatan</option>
+                                    <option value="Learning">Belajar</option>
+                                    <option value="Career">Karier</option>
+                                    <option value="Finance">Keuangan</option>
+                                    <option value="Other">Lainnya</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+
+                                <label>
+                                    Jadwal Kebiasaan
+                                </label>
+
+                                <p class="form-help">
+                                    Pilih hari ketika kebiasaan ini dijadwalkan.
+                                </p>
+
+                                <div class="habit-day-selector">
+
+                                    <label>
+                                        <input type="checkbox" name="habit-days" value="1" checked>
+                                        Sen
+                                    </label>
+
+                                    <label>
+                                        <input type="checkbox" name="habit-days" value="2" checked>
+                                        Sel
+                                    </label>
+
+                                    <label>
+                                        <input type="checkbox" name="habit-days" value="3" checked>
+                                        Rab
+                                    </label>
+
+                                    <label>
+                                        <input type="checkbox" name="habit-days" value="4" checked>
+                                        Kam
+                                    </label>
+
+                                    <label>
+                                        <input type="checkbox" name="habit-days" value="5" checked>
+                                        Jum
+                                    </label>
+
+                                    <label>
+                                        <input type="checkbox" name="habit-days" value="6" checked>
+                                        Sab
+                                    </label>
+
+                                    <label>
+                                        <input type="checkbox" name="habit-days" value="0" checked>
+                                        Min
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                            <button type="submit" id="save-habit-btn">
+                                Simpan Kebiasaan
+                            </button>
+
+                            <button
+                                type="button"
+                                id="cancel-habit-edit-btn"
+                                hidden>
+                                Batal
+                            </button>
+
+                        </form>
+
+                    </section>
+
+                    <!-- HABIT LIST -->
+                    <section class="habit-section habit-list-container">
+
+                        <div class="section-heading">
+                            <h3>Daftar Kebiasaan</h3>
+                            <p>
+                                Pantau dan kelola kebiasaan aktifmu.
+                            </p>
+                        </div>
+
+                        <div id="habit-list">
+
+                            <p class="empty-habit-message">
+                                Memuat daftar kebiasaan...
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                    <!-- HABIT HISTORY -->
+                    <section class="habit-section habit-history-container">
+
+                        <div class="section-heading">
+                            <h3>Riwayat Kebiasaan</h3>
+                            <p>
+                                Lihat perkembangan dan catatan kebiasaanmu.
+                            </p>
+                        </div>
+
+                        <div class="habit-history-controls">
+
+                            <div class="form-group">
+                                <label for="habit-history-date">
+                                    Pilih Tanggal
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="habit-history-date">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="habit-history-type">
+                                    Jenis Riwayat
+                                </label>
+
+                                <select id="habit-history-type">
+                                    <option value="all">Semua Kebiasaan</option>
+                                    <option value="prayer">Salat Lima Waktu</option>
+                                    <option value="habit">Kebiasaan Pribadi</option>
+                                </select>
+                            </div>
+
+                        </div>
+
+                        <div id="habit-history-calendar">
+
+                            <p class="empty-habit-message">
+                                Kalender riwayat akan ditampilkan di sini.
+                            </p>
+
+                        </div>
+
+                        <div id="habit-history-list">
+
+                            <p class="empty-habit-message">
+                                Riwayat akan ditampilkan di sini.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                    <!-- ARCHIVED HABITS -->
+                    <section class="habit-section archived-habits-container">
+
+                        <div class="section-heading">
+                            <h3>Arsip Kebiasaan</h3>
+                            <p>
+                                Kebiasaan yang sudah tidak aktif.
+                            </p>
+                        </div>
+
+                        <div id="archived-habit-list">
+
+                            <p class="empty-habit-message">
+                                Belum ada kebiasaan yang diarsipkan.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script type="module" src="./js/app.js"></script>
+    <script type="module" src="./js/notes-app.js"></script>
+    <script type="module" src="./js/workspace-app.js"></script>
+
+</body>
+</html>

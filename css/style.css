@@ -1,0 +1,1100 @@
+
+/* =========================================
+   PERSONAL WORK OS
+   GLOBAL DESIGN SYSTEM
+========================================= */
+
+:root {
+    --color-primary: #193B35;
+    --color-primary-dark: #122C28;
+    --color-accent: #8FB99A;
+
+    --color-background: #F4F7F5;
+    --color-surface: #FFFFFF;
+
+    --color-text: #1E2925;
+    --color-muted: #78847E;
+
+    --color-border: #E3EAE5;
+
+    --sidebar-width: 250px;
+    --header-height: 70px;
+
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+}
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* =========================================
+   MAIN LAYOUT
+========================================= */
+
+#app {
+    display: flex;
+    min-height: 100vh;
+}
+
+#sidebar {
+    width: var(--sidebar-width);
+    min-height: 100vh;
+    background: var(--color-primary);
+    color: #FFFFFF;
+    padding: 24px 18px;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    padding: 10px 12px 30px;
+}
+
+.sidebar-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #FFFFFF;
+}
+
+#main-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+#main-navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.nav-item {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: none;
+    border-radius: var(--radius-sm);
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.nav-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+}
+
+.nav-item.active {
+    background: rgba(255, 255, 255, 0.16);
+    color: #FFFFFF;
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+#app-header {
+    height: var(--header-height);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    padding: 0 32px;
+}
+
+#app-header h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* =========================================
+   PAGE CONTENT
+========================================= */
+
+#page-content {
+    padding: 32px;
+}
+
+#page-content h2 {
+    font-size: 24px;
+    margin-bottom: 8px;
+    color: var(--color-primary);
+}
+
+.page-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.page-heading h2 {
+    font-size: 26px;
+    color: var(--color-primary);
+}
+
+.page-heading p {
+    color: var(--color-muted);
+    margin-top: 4px;
+}
+
+/* =========================================
+   SUMMARY CARDS
+========================================= */
+
+.task-summary-grid,
+.habit-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.summary-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 22px;
+    min-width: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.summary-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(25, 59, 53, 0.08);
+}
+
+.summary-card-label {
+    color: var(--color-muted);
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.summary-card-value {
+    color: var(--color-primary);
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.summary-card-description {
+    color: var(--color-muted);
+    font-size: 12px;
+}
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+    margin-bottom: 16px;
+}
+
+.section-heading h3 {
+    color: var(--color-primary);
+    font-size: 17px;
+    margin-bottom: 4px;
+}
+
+.section-heading p {
+    color: var(--color-muted);
+    font-size: 13px;
+}
+
+/* =========================================
+   DEADLINE MONITORING
+========================================= */
+
+.deadline-summary-section {
+    margin-bottom: 28px;
+}
+
+.deadline-summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.deadline-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-left: 4px solid var(--color-accent);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    min-width: 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.deadline-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(25, 59, 53, 0.08);
+}
+
+.deadline-card.overdue {
+    border-left-color: #C94C4C;
+}
+
+.deadline-card.today {
+    border-left-color: #D69A28;
+}
+
+.deadline-card.upcoming {
+    border-left-color: #4385B5;
+}
+
+.deadline-card-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-muted);
+    margin-bottom: 10px;
+}
+
+.deadline-card-value {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--color-primary);
+    line-height: 1.2;
+    margin-bottom: 8px;
+}
+
+.deadline-card-description {
+    color: var(--color-muted);
+    font-size: 12px;
+}
+
+/* =========================================
+   FORM SYSTEM
+========================================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    margin-bottom: 18px;
+    flex: 1;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: #FFFFFF;
+    color: var(--color-text);
+    font: inherit;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: var(--color-primary);
+}
+
+.form-row {
+    display: flex;
+    gap: 18px;
+}
+
+/* =========================================
+   TASK CONTAINERS
+========================================= */
+
+.task-form-container,
+.task-list-container {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.task-form-container h3,
+.task-list-container h3 {
+    font-size: 17px;
+    color: var(--color-primary);
+    margin-bottom: 20px;
+}
+
+/* TASK BUTTONS */
+
+#save-task-btn,
+#cancel-edit-btn {
+    padding: 12px 22px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#save-task-btn {
+    background: var(--color-primary);
+    color: #FFFFFF;
+}
+
+#save-task-btn:hover {
+    background: var(--color-primary-dark);
+}
+
+#save-task-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+#cancel-edit-btn {
+    margin-left: 8px;
+    background: #EEF1EF;
+    color: var(--color-text);
+}
+
+#cancel-edit-btn:hover {
+    background: #E1E7E3;
+}
+
+#cancel-edit-btn[hidden] {
+    display: none;
+}
+
+/* TASK FILTER */
+
+.task-filter-container {
+    padding: 18px;
+    background: #F8FAF8;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 22px;
+}
+
+.task-filter-container .form-group {
+    margin-bottom: 12px;
+}
+
+#reset-filters-btn {
+    padding: 10px 18px;
+    background: #E8EEEA;
+    color: var(--color-primary);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+#reset-filters-btn:hover {
+    background: #DCE7DF;
+}
+
+#task-count {
+    margin-top: 14px;
+    color: var(--color-muted);
+    font-size: 12px;
+}
+
+/* TASK LIST */
+
+#task-list {
+    min-height: 40px;
+}
+
+.empty-task-message {
+    color: var(--color-muted);
+    padding: 12px 0;
+}
+
+.task-item {
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    margin-bottom: 14px;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.task-item:hover {
+    box-shadow: 0 5px 18px rgba(25, 59, 53, 0.08);
+    transform: translateY(-2px);
+}
+
+.task-item h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-bottom: 8px;
+}
+
+.task-description {
+    font-size: 13px;
+    color: var(--color-muted);
+    margin-bottom: 8px;
+    overflow-wrap: anywhere;
+}
+
+.task-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 14px;
+}
+
+.task-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* TASK PRIORITY */
+
+.priority-high {
+    background: #FCE8E6;
+    color: #B42318;
+}
+
+.priority-medium {
+    background: #FFF3D6;
+    color: #946200;
+}
+
+.priority-low {
+    background: #E6F4EA;
+    color: #267344;
+}
+
+/* TASK STATUS */
+
+.status-pending {
+    background: #F0F1F3;
+    color: #59616B;
+}
+
+.status-in_progress {
+    background: #E5F0FA;
+    color: #245D91;
+}
+
+.status-completed {
+    background: #E6F4EA;
+    color: #267344;
+}
+
+/* TASK DEADLINE */
+
+.task-deadline {
+    border-top: 1px solid var(--color-border);
+    padding-top: 12px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--color-muted);
+}
+
+/* TASK ACTIONS */
+
+.task-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--color-border);
+}
+
+.task-action-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.task-action-btn.edit {
+    background: #E5F0FA;
+    color: #245D91;
+}
+
+.task-action-btn.edit:hover {
+    background: #D4E6F7;
+}
+
+.task-action-btn.delete {
+    background: #FCE8E6;
+    color: #B42318;
+}
+
+.task-action-btn.delete:hover {
+    background: #F8D5D1;
+}
+
+/* =========================================
+   HABIT TRACKER
+========================================= */
+
+.habit-section {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    margin-bottom: 24px;
+    min-width: 0;
+}
+
+.habit-section .section-heading {
+    margin-bottom: 20px;
+}
+
+.empty-habit-message {
+    color: var(--color-muted);
+    padding: 12px 0;
+    font-size: 13px;
+}
+
+/* =========================================
+   PRAYER TRACKER
+========================================= */
+
+.prayer-section {
+    border-top: 4px solid var(--color-primary);
+}
+
+.prayer-progress-container {
+    background: #F7FAF8;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 18px;
+}
+
+.prayer-progress-info {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.prayer-progress-info span {
+    color: var(--color-muted);
+}
+
+.prayer-progress-info strong {
+    color: var(--color-primary);
+}
+
+.prayer-progress-track {
+    width: 100%;
+    height: 9px;
+    background: #E5ECE7;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.prayer-progress-bar {
+    width: 0;
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: 20px;
+    transition: width 0.3s ease;
+}
+
+.prayer-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.prayer-item:last-child {
+    margin-bottom: 0;
+}
+
+.prayer-item.completed {
+    background: #F0F7F1;
+    border-color: #B8D5BE;
+}
+
+.prayer-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.prayer-item-name {
+    font-weight: 700;
+    color: var(--color-primary);
+    font-size: 14px;
+}
+
+.prayer-item-status {
+    color: var(--color-muted);
+    font-size: 12px;
+}
+
+.prayer-checkbox {
+    width: 22px;
+    height: 22px;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+/* =========================================
+   HABIT FORM
+========================================= */
+
+.habit-form-container form {
+    max-width: 760px;
+}
+
+.form-help {
+    color: var(--color-muted);
+    font-size: 12px;
+    margin-top: -3px;
+}
+
+.habit-day-selector {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.habit-day-selector label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 9px 13px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    background: #F8FAF8;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.habit-day-selector label:has(input:checked) {
+    background: #EAF3EC;
+    border-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+.habit-day-selector input {
+    accent-color: var(--color-primary);
+    cursor: pointer;
+}
+
+#save-habit-btn,
+#cancel-habit-edit-btn {
+    padding: 12px 22px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+#save-habit-btn {
+    background: var(--color-primary);
+    color: #FFFFFF;
+}
+
+#save-habit-btn:hover {
+    background: var(--color-primary-dark);
+}
+
+#cancel-habit-edit-btn {
+    margin-left: 8px;
+    background: #EEF1EF;
+    color: var(--color-text);
+}
+
+#cancel-habit-edit-btn:hover {
+    background: #E1E7E3;
+}
+
+#cancel-habit-edit-btn[hidden] {
+    display: none;
+}
+
+/* =========================================
+   HABIT LIST
+========================================= */
+
+.habit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 18px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 12px;
+    background: #FFFFFF;
+}
+
+.habit-item:last-child {
+    margin-bottom: 0;
+}
+
+.habit-item-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.habit-item h4 {
+    color: var(--color-primary);
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.habit-item-description {
+    color: var(--color-muted);
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.habit-item-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.habit-meta-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 9px;
+    background: #EEF3EF;
+    color: var(--color-primary);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.habit-item-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+}
+
+.habit-action-btn {
+    padding: 7px 11px;
+    border: none;
+    border-radius: var(--radius-sm);
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.habit-action-btn.edit {
+    background: #E5F0FA;
+    color: #245D91;
+}
+
+.habit-action-btn.archive {
+    background: #FFF3D6;
+    color: #946200;
+}
+
+.habit-action-btn.delete {
+    background: #FCE8E6;
+    color: #B42318;
+}
+
+/* HABIT CHECKLIST */
+
+.habit-checklist-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 15px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    margin-bottom: 9px;
+}
+
+.habit-checklist-item.completed {
+    background: #F0F7F1;
+    border-color: #B8D5BE;
+}
+
+.habit-checklist-item input[type="checkbox"] {
+    width: 19px;
+    height: 19px;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+}
+
+.habit-checklist-item label {
+    flex: 1;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* =========================================
+   HABIT HISTORY
+========================================= */
+
+.habit-history-controls {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.habit-history-controls .form-group {
+    max-width: 280px;
+}
+
+#habit-history-calendar {
+    margin-bottom: 20px;
+}
+
+.habit-history-day {
+    padding: 14px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    margin-bottom: 10px;
+    background: #FFFFFF;
+}
+
+.habit-history-day strong {
+    color: var(--color-primary);
+}
+
+.habit-history-day p {
+    color: var(--color-muted);
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+.habit-history-status {
+    display: inline-block;
+    padding: 4px 9px;
+    margin-top: 8px;
+    border-radius: 20px;
+    background: #E6F4EA;
+    color: #267344;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* =========================================
+   ARCHIVED HABITS
+========================================= */
+
+.archived-habits-container {
+    background: #F8FAF8;
+}
+
+.archived-habits-container .habit-item {
+    background: #FFFFFF;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 1100px) {
+    .task-summary-grid,
+    .habit-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .deadline-summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    #sidebar {
+        width: 190px;
+        padding: 18px 12px;
+    }
+
+    #page-content {
+        padding: 20px;
+    }
+
+    #app-header {
+        padding: 0 20px;
+    }
+
+    .habit-item {
+        flex-direction: column;
+    }
+
+    .habit-item-actions {
+        width: 100%;
+    }
+
+    .habit-history-controls {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .habit-history-controls .form-group {
+        max-width: none;
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .task-form-container,
+    .task-list-container,
+    .habit-section {
+        padding: 18px;
+    }
+
+    .task-filter-container {
+        padding: 14px;
+    }
+
+    .task-summary-grid,
+    .habit-summary-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .deadline-summary-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .summary-card,
+    .deadline-card {
+        padding: 15px;
+    }
+
+    .summary-card-value,
+    .deadline-card-value {
+        font-size: 26px;
+    }
+
+    #save-task-btn,
+    #save-habit-btn {
+        width: 100%;
+    }
+
+    #cancel-edit-btn,
+    #cancel-habit-edit-btn {
+        margin-left: 0;
+        margin-top: 8px;
+        width: 100%;
+    }
+
+    .task-item {
+        padding: 16px;
+    }
+
+    .task-info {
+        gap: 7px;
+    }
+
+    .prayer-item {
+        padding: 13px;
+    }
+
+    .habit-day-selector {
+        gap: 6px;
+    }
+
+    .habit-day-selector label {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    #sidebar {
+        width: 70px;
+        padding: 18px 8px;
+    }
+
+    .sidebar-header h2 {
+        font-size: 10px;
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+
+    .nav-item {
+        padding: 10px 5px;
+        font-size: 10px;
+        text-align: center;
+        overflow-wrap: anywhere;
+    }
+
+    #page-content {
+        padding: 16px;
+    }
+
+    .task-summary-grid,
+    .habit-summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .habit-item-actions {
+        flex-direction: column;
+    }
+
+    .habit-action-btn {
+        width: 100%;
+    }
+}
