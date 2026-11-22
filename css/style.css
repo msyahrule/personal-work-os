@@ -1229,3 +1229,14 @@ input:focus,textarea:focus,select:focus {border-color:#8B72E2!important;box-shad
 @media(max-width:900px){#sidebar{width:205px}.dashboard-main-grid{grid-template-columns:1fr}.dashboard-bottom-row{grid-template-columns:1fr}.module-tasks{grid-column:auto;}}
 @media(max-width:640px){#app{display:block}#sidebar{position:relative;width:100%;height:auto;min-height:0;padding:12px 14px;overflow:visible}.sidebar-header{padding:3px 5px 12px}.sidebar-header:before{width:29px;height:29px}.sidebar-header h2{font-size:13px}#main-navigation{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:2px}.nav-item{width:auto;flex:0 0 auto;padding:9px 11px;font-size:11px}.nav-icon{width:auto;font-size:14px}#app-header{height:62px;padding:0 17px}.header-live{display:none}#page-content{padding:18px 14px 25px}.dashboard-welcome{align-items:flex-start;flex-direction:column}.dashboard-welcome h2{font-size:29px!important}.welcome-date{width:100%;text-align:left}.dashboard-stats-grid{gap:10px}.dash-stat{padding:15px;min-height:130px}.dash-stat>strong{font-size:29px}.dashboard-module-grid{grid-template-columns:1fr}.dashboard-toolbar{gap:8px}.range-btn{padding:7px 9px}.dashboard-refresh span{display:none}.dash-panel,.module-preview{padding:16px}.activity-chart-wrap{height:145px}.chart-legend{gap:8px}.chart-legend strong{margin-left:0}.dashboard-quote{padding:16px}.quick-actions{gap:6px}.quick-actions button{flex:1;min-width:90px}.task-summary-grid,.habit-summary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.deadline-summary-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
+/* PWO cloud authentication and sync status */
+.header-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.header-live{display:inline-flex;align-items:center;gap:7px;font-size:11px;color:#777786;white-space:nowrap}
+.header-live i{width:7px;height:7px;border-radius:50%;background:#B7B7C2;display:inline-block}
+.pwo-sync-ready i{background:#16835D}.pwo-sync-syncing i{background:#FD984D;animation:pwoPulse 1s infinite}
+.pwo-sync-offline i,.pwo-sync-error i{background:#C84949}
+.pwo-logout{padding:7px 12px!important;font-size:11px!important;color:#1F2A57!important;border:1px solid #E7DED3!important;background:#fffdfa!important;border-radius:9px!important;cursor:pointer}
+.pwo-logout:hover{background:#FFF0E3!important;border-color:#FD984D!important}
+@keyframes pwoPulse{50%{opacity:.35}}
+@media(max-width:540px){.header-actions{gap:6px}.header-live{font-size:9px}.pwo-logout{padding:6px 8px!important}}

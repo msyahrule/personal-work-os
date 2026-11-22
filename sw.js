@@ -1,5 +1,5 @@
-const CACHE_NAME = 'personal-work-os-shell-v2';
-const APP_SHELL = ['./','./index.html','./css/style.css','./css/notes.css','./js/db.js','./js/app.js','./js/notes-app.js','./js/workspace-app.js','./js/services/storage.js','./js/modules/tasks.js','./js/modules/habits.js','./js/modules/notes.js','./manifest.webmanifest'];
+const CACHE_NAME = 'personal-work-os-auth-cloud-v3';
+const APP_SHELL = ['./','./index.html','./login.html','./css/style.css','./css/notes.css','./js/db.js','./js/boot.js','./js/auth.js','./js/supabase-client.js','./js/cloud-sync.js','./js/app.js','./js/notes-app.js','./js/workspace-app.js','./js/services/storage.js','./js/modules/tasks.js','./js/modules/habits.js','./js/modules/notes.js','./manifest.webmanifest'];
 self.addEventListener('install', event => { event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(APP_SHELL))); self.skipWaiting(); });
 self.addEventListener('activate', event => { event.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))); self.clients.claim(); });
 self.addEventListener('fetch', event => { if (event.request.method !== 'GET') return; const url = new URL(event.request.url); if (url.origin !== self.location.origin) return; event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => { if (response.ok) { const copy=response.clone(); caches.open(CACHE_NAME).then(cache=>cache.put(event.request,copy)); } return response; }).catch(()=>caches.match('./index.html')))); });

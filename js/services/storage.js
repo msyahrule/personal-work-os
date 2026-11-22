@@ -142,22 +142,27 @@ export async function updateData(storeName, id, changes) {
 
 }
 
-// DELETE - Delete data by ID
+// DELETE - Delete data by ID and preserve a cloud tombstone.
 export async function deleteData(storeName, id) {
-
     const database = await validateStore(storeName);
-
     return new Promise((resolve, reject) => {
+        const stores = storeName === "sync_tombstones"
+            ? [storeName]
+            : [storeName, "sync_tombstones"];
+        const transaction = database.transaction(stores, "readwrite");
+        transaction.objectStore(storeName).delete(id);
 
-        const transaction = database.transaction(storeName, "readwrite");
-        const store = transaction.objectStore(storeName);
-
-        store.delete(id);
+        if (storeName !== "sync_tombstones") {
+            transaction.objectStore("sync_tombstones").put({
+                id: `${storeName}::${String(id)}`,
+                targetStore: storeName,
+                targetId: id,
+                updatedAt: new Date().toISOString()
+            });
+        }
 
         transaction.oncomplete = () => resolve(true);
         transaction.onerror = () => reject(transaction.error);
         transaction.onabort = () => reject(transaction.error);
-
     });
-
 }

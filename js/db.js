@@ -5,7 +5,7 @@
 ===================================== */
 
 const DB_NAME = "PersonalWorkOS_DB";
-const DB_VERSION = 1;
+const DB_VERSION = 2;
 
 let db;
 
@@ -33,7 +33,8 @@ export function initDatabase() {
                 "transactions",
                 "business_ideas",
                 "settings",
-                "activity_logs"
+                "activity_logs",
+                "sync_tombstones"
             ];
 
             stores.forEach(storeName => {
