@@ -56,6 +56,7 @@ let archivedHabits = [];
 const navigation = document.getElementById("main-navigation");
 const pageTitle = document.getElementById("page-title");
 
+const dashboardPage = document.getElementById("dashboard-page");
 const tasksPage = document.getElementById("tasks-page");
 const habitsPage = document.getElementById("habits-page");
 
@@ -216,7 +217,8 @@ function setupNavigation() {
 
         const targetPage = button.dataset.page;
 
-        if (targetPage !== "tasks-page" &&
+        if (targetPage !== "dashboard-page" &&
+            targetPage !== "tasks-page" &&
             targetPage !== "habits-page") {
             return;
         }
@@ -226,26 +228,24 @@ function setupNavigation() {
 }
 
 function showPage(pageId) {
-    document.querySelectorAll("#page-content > section").forEach(section => {
-        section.hidden = section.id !== pageId;
-    });
+    const isDashboard = pageId === "dashboard-page";
     const isTasks = pageId === "tasks-page";
+    const isHabits = pageId === "habits-page";
 
+    dashboardPage.hidden = !isDashboard;
     tasksPage.hidden = !isTasks;
-    habitsPage.hidden = isTasks;
+    habitsPage.hidden = !isHabits;
+    const notesPage = document.getElementById("notes-page");
+    if (notesPage) notesPage.hidden = true;
 
     document.querySelectorAll(".nav-item").forEach(button => {
-        button.classList.toggle(
-            "active",
-            button.dataset.page === pageId
-        );
+        button.classList.toggle("active", button.dataset.page === pageId);
     });
 
-    pageTitle.textContent = isTasks ? "Dashboard" : "Habit Tracker";
+    pageTitle.textContent = isDashboard ? "Overview" : (isTasks ? "My Tasks" : "Habit Tracker");
 
-    if (!isTasks) {
-        loadHabits();
-    }
+    if (isHabits) loadHabits();
+    if (isDashboard) window.dispatchEvent(new CustomEvent("pwo:dashboard-refresh"));
 }
 
 /* =========================================

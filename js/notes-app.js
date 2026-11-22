@@ -219,9 +219,8 @@ navigation.addEventListener("click", event => {
 
 function showNotesPage() {
 
-    document.querySelectorAll("#page-content > section").forEach(section => {
-        section.hidden = section.id !== "notes-page";
-    });
+    const dashboardPage = document.getElementById("dashboard-page");
+    if (dashboardPage) dashboardPage.hidden = true;
     document.getElementById("tasks-page").hidden = true;
     document.getElementById("habits-page").hidden = true;
 
